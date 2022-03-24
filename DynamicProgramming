@@ -1,0 +1,27 @@
+0-1 KnapSack Programming
+ 
+ 
+==> Recursion with memoization
+class Solution 
+{ 
+    static int dp[][] = new int[1001][1001];
+    
+    //Function to return max value that can be put in knapsack of capacity W.
+    static int knapSack(int W, int wt[], int val[], int n) 
+    { 
+      if(n==0 || W==0){
+          return 0;
+      }
+      if(dp[n][W]!=0){
+          return dp[n][W];
+      }
+      if(wt[n-1]<=W){
+          return dp[n][W]=Math.max(val[n-1]+knapSack(W-wt[n-1],wt,val,n-1),knapSack(W,wt,val,n-1));
+      }
+      else{
+          return dp[n][W]=knapSack(W,wt,val,n-1);
+      }
+        
+    } 
+}
+
